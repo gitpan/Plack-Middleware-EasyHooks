@@ -9,53 +9,7 @@ use Plack::Builder;
 use Plack::Test;
 use HTTP::Request::Common;
 
-my %apps = (
-    'Simple app' => 
-    sub {
-        return [ 200, [], [qw( foo bar )]];
-    },
-
-    'Delayed response' => 
-    sub {
-        return sub {
-            my $responder = shift;
-
-            $responder->( [ 200, [], [qw( foo bar )]] );
-        }
-    },
-
-    'Streaming interface' => 
-    sub {
-        return sub {
-            my $responder = shift;
-            my $writer    = $responder->( [ 200, [] ] );
-
-            $writer->write("foo");
-            $writer->write("bar");
-            $writer->close();
-        }
-    },
-
-    'PerlIO filehandle' => 
-    sub {
-        my $content = "foobar";
-        open my $fh, '<', \$content;
-
-        return [ 200, [], $fh ];
-    },
-
-    'IO::Handle like object' => 
-    sub {
-        my @content = qw(foo bar);
-        my $body = Plack::Util::inline_object(
-            getline => sub { shift @content },
-            close   => sub { @content = ()  },
-        );
-
-        return [ 200, [], $body ];
-    },
-);
-
+use t::Apps qw(%apps);
 
 for my $appname (keys %apps) {
     my $path;

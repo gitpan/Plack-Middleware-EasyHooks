@@ -19,4 +19,9 @@ MANIFEST			This list of files
 META.yml
 README
 t/00-load.t
-t/01-simple.t
+t/10-inline.t
+t/20-inherit.t
+t/30-noop.t
+t/40-header.t
+t/Apps.pm
+t/Middleware/Inherit.pm

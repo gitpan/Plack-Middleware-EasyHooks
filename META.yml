@@ -22,6 +22,7 @@ no_index:
     - inc
     - t
 requires:
+  Plack: 0
   perl: 5.6.0
 resources:
   homepage: https://github.com/One-com/plack-middleware-easyhooks/tree
@@ -30,4 +31,4 @@ resources:
     type: git
     url: git://github.com/One-com/plack-middleware-easyhooks.git
     web: https://github.com/One-com/plack-middleware-easyhooks/tree
-version: 0.01
+version: 0.02
